@@ -1,9 +1,10 @@
-"use client";
-
 import { motion } from "framer-motion";
-import { Download, Play } from "lucide-react";
+import { Download } from "lucide-react";
+import { useI18n } from "@/i18n/I18nContext";
 
 export default function Hero() {
+    const { t } = useI18n();
+
     return (
         <section className="relative pt-60 pb-32 px-6 overflow-hidden">
             {/* Background Glow */}
@@ -15,7 +16,7 @@ export default function Hero() {
                     animate={{ y: 0, opacity: 1 }}
                     className="flex justify-center mb-12"
                 >
-                    <img src="/assets/icon-256.png" alt="DAWNO Logo" className="w-32 h-32 md:w-48 md:h-48 drop-shadow-[0_0_50px_rgba(112,48,160,0.3)] float-animation" />
+                    <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/assets/icon-256.png`} alt="DAWNO Logo" className="w-32 h-32 md:w-48 md:h-48 drop-shadow-[0_0_50px_rgba(112,48,160,0.3)] float-animation" />
                 </motion.div>
 
                 <motion.h1
@@ -24,8 +25,8 @@ export default function Hero() {
                     transition={{ delay: 0.1 }}
                     className="text-6xl md:text-[5.5rem] font-sans font-black tracking-[-0.04em] leading-[0.9] mb-8"
                 >
-                    Better. Faster. <br />
-                    <span className="text-gradient">Professional PAWN Editor.</span>
+                    {t.hero.title1} <br />
+                    <span className="text-gradient">{t.hero.title2}</span>
                 </motion.h1>
 
                 <motion.p
@@ -34,8 +35,7 @@ export default function Hero() {
                     transition={{ delay: 0.2 }}
                     className="text-lg md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed font-medium"
                 >
-                    Modernize your workflow with the industry's most advanced PAWN code editor.
-                    Built for speed, crafted for developers by developers.
+                    {t.hero.desc}
                 </motion.p>
 
                 <motion.div
@@ -46,11 +46,11 @@ export default function Hero() {
                 >
                     <a href="#downloads" className="w-full sm:w-auto flex items-center justify-center gap-2 px-10 py-5 bg-white text-black font-black uppercase tracking-widest text-[11px] rounded-full hover:scale-105 transition-all shadow-2xl shadow-white/10">
                         <Download className="w-4 h-4" />
-                        Download Stable
+                        {t.hero.downloadBtn}
                     </a>
                     <a href="https://github.com/deksdeveloper/dawno" target="_blank" className="w-full sm:w-auto flex items-center justify-center gap-2 px-10 py-5 bg-white/5 border border-white/10 text-white font-black uppercase tracking-widest text-[11px] rounded-full hover:bg-white/10 transition-all">
                         <Github className="w-4 h-4" />
-                        GitHub Repository
+                        {t.hero.githubBtn}
                     </a>
                 </motion.div>
             </div>
